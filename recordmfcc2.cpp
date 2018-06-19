@@ -45,16 +45,19 @@
 #include <stdlib.h>
 #include "portaudio.h"
 #include "MFCCnew.cpp"
+#include <fstream>
 
 /* #define SAMPLE_RATE  (17932) // Test failure to open with this value. */
-#define SAMPLE_RATE  (8000)
-#define FRAMES_PER_BUFFER (512)
-#define NUM_SECONDS     (2)
-#define NUM_CHANNELS    (1)
+#define SAMPLE_RATE  8000
+#define FRAMES_PER_BUFFER 512
+#define NUM_SECONDS     2
+#define NUM_CHANNELS    2
 /* #define DITHER_FLAG     (paDitherOff) */
-#define DITHER_FLAG     (0) /**/
+#define DITHER_FLAG     0 /**/
 /** Set to 1 if you want to capture the recording to a file. */
-#define WRITE_TO_FILE   (0)
+#define WRITE_TO_FILE   0
+
+using namespace std;
 
 /* Select sample format. */
 #if 1
@@ -194,11 +197,11 @@ static int playCallback( const void *inputBuffer, void *outputBuffer,
     return finished;
 }
 
-vector<vector<double>> readFile(string name){
-    ifstream  file(name);
+vector<vector<double> > readFile(string name){
+    ifstream  file(name.c_str());
     string line; 
     
-    vector<vector<double>> data;
+    vector<vector<double> > data;
     while(getline(file, line))
     {
         
@@ -233,8 +236,8 @@ int main(void)
     int                 numBytes;
     SAMPLE              max, val;
     double              average;
-    vector<vector<double>> mfccData;
-    vector<vector<double>> mfccRead;
+    vector<vector<double> > mfccData;
+    vector<vector<double> > mfccRead;
     
   
     //MFCC_DATA mfccData;
@@ -337,7 +340,7 @@ int main(void)
         printf("\n\n\nHello there...\n");
     }
     else if((dtwResult2<dtwResult1)&&(dtwResult2<dtwResult3)&&(dtwResult2<8000)){
-        printf("\n\n\n\Hi there...\n");
+        printf("\n\n\nHi there...\n");
     }
     else if((dtwResult3<dtwResult1)&&(dtwResult3<dtwResult2)&&(dtwResult3<8000)){
         printf("\n\n\nYes Sir...\n");

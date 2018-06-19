@@ -172,7 +172,7 @@ void MFCC(int length_frame, int length_DFT, int number_coefficients, int number_
 	delete[] Xi;
 }
 
-vector<vector<double>> findMfcc(float audioData[],int l){
+vector<vector<double> > findMfcc(float audioData[],int l){
 	int stride = 160;
 	int length_frame = 400;
 	int length_DFT = 512;
@@ -185,7 +185,7 @@ vector<vector<double>> findMfcc(float audioData[],int l){
 	double pi = 3.14159265358979323846;
 
 	double** feature_vector;
-        vector< vector<double>> mfcc_Data;
+        vector< vector<double> > mfcc_Data;
     //     data_holder.length=number_feature_vectors*number_coefficients*3;
       //  data_holder.data=new double[data_holder.length];
 	//printf("size of mfcc %d",sizeof(MFCCData));
@@ -290,13 +290,13 @@ double minimum(double x, double y,double z){
         }
     }
 }
-double DTW(vector<vector<double>> &x,vector<vector<double>> &y){
+double DTW(vector<vector<double> > &x,vector<vector<double> > &y){
     long n=x.size();
     long m=y.size();
     //printf("\nDTW sizes of n=%d and m=%d and y(m-2,)=%f",n,m,y[m-2][1]);
     
-    vector <vector <double>> dtw(n, vector<double>(m));
-     vector <vector <double>> dtw2(n, vector<double>(m));
+    vector <vector <double> > dtw(n, vector<double>(m));
+     vector <vector <double> > dtw2(n, vector<double>(m));
    
    /* for(int i=1;i<n;i++){
         dtw[i][0]=100000.00;
